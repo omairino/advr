@@ -4,22 +4,25 @@ package com.example.lenovo.start.Models;
  * Created by Lenovo on 02/01/2018.
  */
 
-public class userInfo {
+public    class userInfo {
     public String username;
     public String address;
     public String property;
     public String number;
     public String lat,lng;
-    public String Description;
+    public String description;
 
-    public userInfo(String username, String address, String property, String number, String lat, String lng ,String Description) {
+    public userInfo(String username, String address, String property, String number, String lat, String lng ,String description) {
         this.username = username;
         this.address = address;
         this.property = property;
         this.number = number;
         this.lat = lat;
         this.lng = lng;
-        this.Description=Description;
+        this.description=description;
+    }
+
+    public userInfo() {
     }
 
     public String getUsername() {
@@ -70,11 +73,11 @@ public class userInfo {
         this.lng = lng;
     }
 
-    public String getDescription() {
-        return Description;
+    public String getdescription() {
+        return description;
     }
 
-    public void setDescription(String description) {
-        Description = description;
+    public void setdescription(String description) {
+        this.description = description;
     }
 }

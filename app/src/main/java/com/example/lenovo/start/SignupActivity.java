@@ -55,14 +55,16 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.show();
         if(TextUtils.isEmpty(email)){
             Toast.makeText(SignupActivity.this,"Please enter email",Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
         }
         else if(TextUtils.isEmpty(password)){
             Toast.makeText(SignupActivity.this,"Please enter password",Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
         }else {
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    progressDialog.hide();
+                    progressDialog.dismiss();
                     if (task.isSuccessful()) {
                         Toast.makeText(SignupActivity.this, "Registered Successfully!", Toast.LENGTH_LONG).show();
                         nameTxt.setVisibility(View.VISIBLE);

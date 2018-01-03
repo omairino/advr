@@ -49,7 +49,7 @@ get();
     public void get(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference scoresRef = database.getReference();
-        scoresRef.orderByValue().addChildEventListener(new ChildEventListener() {
+       /* scoresRef.orderByValue().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
                updates.setText(dataSnapshot.child("Description").getValue().toString());
@@ -76,7 +76,7 @@ get();
             }
 
             // ...
-        });
+        });*/
 
 
 

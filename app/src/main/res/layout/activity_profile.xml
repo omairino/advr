@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.start.ProfileActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 <TextView
     android:id="@+id/tv"
     android:layout_width="wrap_content"

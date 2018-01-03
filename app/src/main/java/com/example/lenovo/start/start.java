@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,12 +34,21 @@ public class start extends AppCompatActivity implements LocationListener{
         loginBtn=(Button)findViewById(R.id.loginBtn);
         signupbtn=(Button)findViewById(R.id.signupBtn);
         searchBtn=(Button)findViewById(R.id.searchBtn);
+
+
+        if(cheakInt()){
+          //  Toast.makeText(start.this,"No Internet",Toast.LENGTH_LONG);
+
+
     firebaseAuth=FirebaseAuth.getInstance();
     firebaseUser=firebaseAuth.getCurrentUser();
     if(firebaseUser!=null){
         finish();
         startActivity(new Intent(this,ProfileActivity.class));
     }
+        }else {Toast.makeText(start.this,"No Internet",Toast.LENGTH_LONG).show();}
+
+
 
 
      getper();
@@ -49,27 +60,45 @@ public class start extends AppCompatActivity implements LocationListener{
     }
     private void checkGPSEnabledAndProceed(){
         if(isGPSEnabled()){
-            Toast.makeText(start.this, "GPS is enabled.", Toast.LENGTH_SHORT).show();
+          // Toast.makeText(start.this, "GPS is enabled.", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(start.this, "GPS is disabled, show alert", Toast.LENGTH_SHORT).show();
             //buildAlertMessageNoGps();
         }
     }
+
+
+
+
     public void signupBtnClicked(View view) {
-        Intent signupIntent=new Intent(this,SignupActivity.class);
-        signupIntent.putExtra("lat",Double.toString(lat));
-        signupIntent.putExtra("lng",Double.toString(lng));
-        startActivity(signupIntent);
+
+        if(cheakInt()) {
+            Toast.makeText(start.this, "No Internet", Toast.LENGTH_LONG);
+
+            Intent signupIntent = new Intent(this, SignupActivity.class);
+            signupIntent.putExtra("lat", Double.toString(lat));
+            signupIntent.putExtra("lng", Double.toString(lng));
+            startActivity(signupIntent);
+        }
+        else{Toast.makeText(start.this,"No Wifi",Toast.LENGTH_LONG).show();}
     }
 
-    public void loginBtnClicked(View view) {
-        firebaseAuth=FirebaseAuth.getInstance();
-        if(firebaseAuth.getCurrentUser()!=null){
-            finish();
-            startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-        }
-        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
 
+
+    public void loginBtnClicked(View view) {
+
+        if(cheakInt()) {
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() != null) {
+            finish();
+            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+        }
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+    }
+    else
+        {Toast.makeText(start.this,"No Wifi",Toast.LENGTH_LONG).show();}
 
     }
 
@@ -86,7 +115,7 @@ public class start extends AppCompatActivity implements LocationListener{
 
     @Override
     public void onProviderEnabled(String provider) {
-        Toast.makeText(start.this,"GPS IS ON",Toast.LENGTH_SHORT).show();
+       Toast.makeText(start.this,"GPS IS ON",Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -110,6 +139,38 @@ public class start extends AppCompatActivity implements LocationListener{
     }
 
     public void searchBtnClicked(View view) {
-        ((TextView)findViewById(R.id.tv1)).setText(Double.toString(lat)+" "+Double.toString(lng));
+
+   try {
+       if (cheakInt()) {
+           Toast.makeText(start.this, "No Internet", Toast.LENGTH_LONG);
+
+           Intent signupIntent1 = new Intent(this, NearbyPlaces.class);
+           signupIntent1.putExtra("lat", Double.toString(lat));
+           signupIntent1.putExtra("lng", Double.toString(lng));
+           startActivity(signupIntent1);
+       } else {
+           Toast.makeText(start.this, "No Internet", Toast.LENGTH_LONG).show();
+       }
+   }catch (Exception e)
+   {
+       Toast.makeText(start.this, "Get Coordinates", Toast.LENGTH_LONG).show();
+   }
+    }
+
+    public boolean cheakInt(){
+
+
+        boolean connected = false;
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            connected = true;
+            return connected;
+        }
+        else{
+            connected = false;
+            return connected;
+        }
     }
 }

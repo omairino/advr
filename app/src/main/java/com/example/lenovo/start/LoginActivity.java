@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (task.isSuccessful()) {
-                        progressDialog.hide();
+                        progressDialog.dismiss();
                         finish();
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
 
