@@ -49,34 +49,7 @@ get();
     public void get(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference scoresRef = database.getReference();
-       /* scoresRef.orderByValue().addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-               updates.setText(dataSnapshot.child("Description").getValue().toString());
-            }
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-            // ...
-        });*/
 
 
 
@@ -103,7 +76,7 @@ get();
             Toast.makeText(ProfileActivity.this,"No Updates Entered",Toast.LENGTH_LONG).show();
         }
         else {
-            databaseReference.child(firebaseUser.getUid()).child("Description").setValue(updates1).addOnCompleteListener(new OnCompleteListener<Void>() {
+            databaseReference.child(firebaseUser.getUid()).child("description").setValue(updates1).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {

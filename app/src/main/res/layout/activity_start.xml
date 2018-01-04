@@ -6,9 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.start.start"
     android:orientation="vertical"
-
+android:background="#935347"
     android:padding="16dp"
    >
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
     <Button
         android:id="@+id/searchBtn"
@@ -16,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="200dp"
-        android:background="#fdc1d9"
+        android:background="@drawable/round_btn"
         android:onClick="searchBtnClicked"
         android:text="Search!"
         android:textColor="#f5f5f5"
@@ -39,7 +45,7 @@
             android:text="Signup"
             android:textStyle="bold"
             android:onClick="signupBtnClicked"
-            android:background="#89dcc1"
+            android:background="#5e0231"
             android:textColor="#f5f5f5"
             android:layout_marginRight="5dp"
             />
@@ -53,7 +59,7 @@
             android:layout_weight="1"
             android:text="Login"
             android:textColor="#f5f5f5"
-            android:background="#89dcc1"
+            android:background="#5e0231"
             android:onClick="loginBtnClicked" />
     </LinearLayout>
 

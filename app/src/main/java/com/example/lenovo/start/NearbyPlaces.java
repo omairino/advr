@@ -2,6 +2,7 @@ package com.example.lenovo.start;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,9 +17,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lenovo.start.Models.ArrayListClass;
 import com.example.lenovo.start.Models.userInfo;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class NearbyPlaces extends AppCompatActivity {
@@ -46,8 +50,12 @@ String desc="";
             tv=(TextView)findViewById(R.id.textView);
 
             progressDialog=new ProgressDialog(this);
+        LatLng latLng=new LatLng(Double.parseDouble(getIntent().getStringExtra("lat")),Double.parseDouble(getIntent().getStringExtra("lng")));
 
-            get();
+        new GetPlaces().execute(latLng);
+
+
+
             lat=getIntent().getStringExtra("lat");
             lng=getIntent().getStringExtra("lng");
             tv.setText(lat+" "+lng);
@@ -71,36 +79,56 @@ String desc="";
 
 
 
-    public void get(){
+    public class GetPlaces extends AsyncTask<LatLng,Void,Void>{
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference scoresRef = database.getReference();
-        progressDialog.setTitle("Wait..");
-        progressDialog.show();
 
-        scoresRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                arrayList.clear();
-                progressDialog.dismiss();
-                for (DataSnapshot ds : dataSnapshot.getChildren())
-                {
-                    userInfo userInfo=ds.getValue(userInfo.class);
-                    arrayList.add(userInfo);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setTitle("Searching..");
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(final LatLng... coords) {
+
+
+
+
+            scoresRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    arrayList.clear();
+                    progressDialog.dismiss();
+                    for (DataSnapshot ds : dataSnapshot.getChildren())
+                    {
+                        userInfo userInfo=ds.getValue(userInfo.class);
+                        if(CalculationByDistance(coords[0],new LatLng(Double.parseDouble(userInfo.getLat()),Double.parseDouble(userInfo.getLng())))<=100.0) {
+                            arrayList.add(userInfo);
+                        }
+                    }
+
+                    ArrayListClass arrayListClass=new ArrayListClass(NearbyPlaces.this,arrayList);
+                    listView.setAdapter(arrayListClass);
+
                 }
 
-                ArrayListClass arrayListClass=new ArrayListClass(NearbyPlaces.this,arrayList);
-                listView.setAdapter(arrayListClass);
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
+                }
+            });
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+            return null;
+        }
 
-            }
-        });
-
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(getApplicationContext(),"Searching End",Toast.LENGTH_LONG).show();
+        }
     }
-
 
     public void gotoMap() {
         LinearLayout mainLayout = (LinearLayout)
@@ -145,5 +173,30 @@ String desc="";
                 return true;
             }
         });
+    }
+
+    public double CalculationByDistance(LatLng StartP, LatLng EndP) {
+        int Radius = 6371;// radius of earth in Km
+        double lat1 = StartP.latitude;
+        double lat2 = EndP.latitude;
+        double lon1 = StartP.longitude;
+        double lon2 = EndP.longitude;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double valueResult = Radius * c;
+        double km = valueResult / 1;
+        DecimalFormat newFormat = new DecimalFormat("####");
+        int kmInDec = Integer.valueOf(newFormat.format(km));
+        double meter = valueResult % 1000;
+        int meterInDec = Integer.valueOf(newFormat.format(meter));
+        Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
+                + " Meter   " + meterInDec);
+
+        return Radius * c;
     }
 }

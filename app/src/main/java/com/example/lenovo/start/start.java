@@ -13,13 +13,17 @@ import android.net.NetworkInfo;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.text.DecimalFormat;
 
 public class start extends AppCompatActivity implements LocationListener{
     Button loginBtn,signupbtn,searchBtn;
@@ -35,7 +39,10 @@ public class start extends AppCompatActivity implements LocationListener{
         signupbtn=(Button)findViewById(R.id.signupBtn);
         searchBtn=(Button)findViewById(R.id.searchBtn);
 
+        LatLng jenin=new LatLng(32.464670, 35.293844);
+        LatLng omarioptics=new LatLng(32.455527, 35.296018);
 
+      //  ((TextView)findViewById(R.id.textView2)).setText(Double.toString(CalculationByDistance(jenin,omarioptics))+"");
         if(cheakInt()){
           //  Toast.makeText(start.this,"No Internet",Toast.LENGTH_LONG);
 
@@ -55,6 +62,9 @@ public class start extends AppCompatActivity implements LocationListener{
 
 
     }
+
+
+
     private boolean isGPSEnabled(){
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
@@ -71,7 +81,7 @@ public class start extends AppCompatActivity implements LocationListener{
 
 
     public void signupBtnClicked(View view) {
-
+        try{
         if(cheakInt()) {
             Toast.makeText(start.this, "No Internet", Toast.LENGTH_LONG);
 
@@ -81,26 +91,28 @@ public class start extends AppCompatActivity implements LocationListener{
             startActivity(signupIntent);
         }
         else{Toast.makeText(start.this,"No Wifi",Toast.LENGTH_LONG).show();}
+    }catch (Exception e){
+        Toast.makeText(start.this, "Get Coordinates", Toast.LENGTH_LONG).show();
+    }
     }
 
 
 
     public void loginBtnClicked(View view) {
 
-        if(cheakInt()) {
+            if (cheakInt()) {
+                firebaseAuth = FirebaseAuth.getInstance();
+                if (firebaseAuth.getCurrentUser() != null) {
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                }
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            } else {
+                Toast.makeText(start.this, "No Wifi", Toast.LENGTH_LONG).show();
+            }
 
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() != null) {
-            finish();
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-    }
-    else
-        {Toast.makeText(start.this,"No Wifi",Toast.LENGTH_LONG).show();}
-
-    }
 
     @Override
     public void onLocationChanged(Location location) {
