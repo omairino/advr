@@ -12,14 +12,18 @@
         android:id="@+id/emailTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_action_name"
+        android:drawablePadding="12dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="Email" />
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/passwordTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_action_pass"
+        android:drawablePadding="12dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword" />
@@ -43,9 +47,10 @@
         android:id="@+id/addressTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:hint="Address"
         android:inputType="textPersonName"
-        android:hint="Address" />
+        android:visibility="invisible"
+        tools:drawableLeft="@drawable/ic_action_address" />
 
     <EditText
         android:id="@+id/propertyTxt"
@@ -61,7 +66,8 @@
         android:layout_height="wrap_content"
         android:hint="Number"
         android:inputType="number"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        tools:drawableLeft="@drawable/ic_action_phone" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -69,6 +75,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/coordsTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Coordinates"
+            android:textSize="16dp"/>
 
         <EditText
             android:id="@+id/latTxt"
@@ -93,12 +107,12 @@
             android:inputType="textPersonName"
             android:hint="Lng"  />
     </LinearLayout>
+
     <Button
         android:id="@+id/sendInfoBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="addInfo"
         android:text="Save Information"
-        android:visibility="invisible"
-        />
+        android:visibility="invisible" />
 </LinearLayout>

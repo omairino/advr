@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.start.start"
     android:orientation="vertical"
-android:background="#935347"
+android:background="@drawable/bgg"
     android:padding="16dp"
    >
 
@@ -14,7 +14,13 @@ android:background="#935347"
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="LoCat"
+        android:textAlignment="center"
+        android:textColor="#f5f5f5"
+        android:textSize="40dp"
+        android:textStyle="italic"
+        android:typeface="serif"/>
+
 
     <Button
         android:id="@+id/searchBtn"

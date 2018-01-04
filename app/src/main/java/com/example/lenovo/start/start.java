@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class start extends AppCompatActivity implements LocationListener{
     Double lat,lng;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
+    RatingBar ratingBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,7 @@ public class start extends AppCompatActivity implements LocationListener{
         loginBtn=(Button)findViewById(R.id.loginBtn);
         signupbtn=(Button)findViewById(R.id.signupBtn);
         searchBtn=(Button)findViewById(R.id.searchBtn);
+
 
         LatLng jenin=new LatLng(32.464670, 35.293844);
         LatLng omarioptics=new LatLng(32.455527, 35.296018);
@@ -62,6 +65,7 @@ public class start extends AppCompatActivity implements LocationListener{
 
 
     }
+
 
 
 

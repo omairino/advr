@@ -14,27 +14,39 @@
         android:id="@+id/emailTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:drawableLeft="@drawable/ic_action_name"
+        android:drawablePadding="12dp"
+        android:hint="Email"
         android:inputType="textEmailAddress"
-        android:hint="Email" />
+        android:textColorHint="#5e0231"
+ />
 
     <EditText
         android:id="@+id/passwordTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:drawableLeft="@drawable/ic_action_pass"
+        android:drawablePadding="12dp"
+        android:hint="Password"
         android:inputType="textPassword"
-        android:hint="Password" />
+        android:textColorHint="#5e0231"
+       />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:onClick="LoginUser"/>
+        android:onClick="LoginUser"
+        android:textColor="#5e0231"
+     />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="You Don't Have An Account? Register Here"
-        android:onClick="gotoSignup"/>
+        android:onClick="gotoSignup"
+        android:textColor="#5e0231"
+
+
+        />
 
 </LinearLayout>
