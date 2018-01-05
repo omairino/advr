@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lenovo.start.Models.ArrayListClass;
 import com.example.lenovo.start.Models.userInfo;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,9 +51,27 @@ get();
     public void get(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference scoresRef = database.getReference();
+        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+
+        scoresRef.child(firebaseUser.getUid()).child("description").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
 
 
+                updates.setText(dataSnapshot.getValue().toString());
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
 
 
     }

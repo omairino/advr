@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.start.NearbyPlaces"
     android:orientation="vertical"
-    android:id="@+id/nearbyLayout">
+    android:id="@+id/nearbyLayout"
+    android:elevation="50dp"
+    android:layout_margin="15dp">
 
     <TextView
         android:id="@+id/textView"
@@ -16,6 +18,7 @@
         />
 
     <ListView
+        
         android:id="@+id/listview1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

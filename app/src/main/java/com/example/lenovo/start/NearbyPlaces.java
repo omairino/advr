@@ -97,6 +97,7 @@ String desc="";
 
 
             scoresRef.addValueEventListener(new ValueEventListener() {
+
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     arrayList.clear();
@@ -118,6 +119,7 @@ String desc="";
                 public void onCancelled(DatabaseError databaseError) {
 
                 }
+
             });
 
             return null;
@@ -145,7 +147,7 @@ String desc="";
         int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         boolean focusable = true; // lets taps outside the popup also dismiss it
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, 400, focusable);
+        final PopupWindow popupWindow = new PopupWindow(popupView,width, 400, focusable);
 
         // show the popup window
         popupWindow.showAtLocation(mainLayout, Gravity.CENTER, 0, 0);
