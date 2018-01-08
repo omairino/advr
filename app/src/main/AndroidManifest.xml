@@ -19,17 +19,23 @@
         android:roundIcon="@drawable/maps1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".start">
+        <activity android:name=".start"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".NearbyPlaces" />
+        <activity android:name=".SignupActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ProfileActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".NearbyPlaces"
+            android:screenOrientation="portrait"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -44,7 +50,8 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait"></activity>
     </application>
     <uses-permission android:name="android.permission.CALL_PHONE" />
 </manifest>
