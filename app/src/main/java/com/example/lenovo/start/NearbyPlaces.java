@@ -84,7 +84,7 @@ public class NearbyPlaces extends AppCompatActivity {
                 arrayList1.clear();
                 List<String> strings = selectedItem.getdescription();
                 for (int i = 0; i < strings.size(); i++)
-                    if (strings.get(i) != null)
+                    if (!(strings.get(i).equals("")))
                         arrayList1.add(strings.get(i).toString());
 
                 // Toast.makeText(getApplicationContext(),arrayList1.toString(),Toast.LENGTH_LONG).show();
@@ -118,11 +118,12 @@ public class NearbyPlaces extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     arrayList.clear();
+
                     progressDialog.dismiss();
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         userInfo userInfo = ds.getValue(com.example.lenovo.start.Models.userInfo.class);
-
-                        if (CalculationByDistance(coords[0], new LatLng(Double.parseDouble(userInfo.getLat()), Double.parseDouble(userInfo.getLng()))) <= 100.0) {
+                            if(!(userInfo.getNumber()==null&&userInfo.getUsername()==null&&userInfo.getAddress()==null&&userInfo.getProperty()==null))
+                                if (CalculationByDistance(coords[0], new LatLng(Double.parseDouble(userInfo.getLat()), Double.parseDouble(userInfo.getLng()))) <= 100.0) {
                             arrayList.add(userInfo);
 
                         }
@@ -192,7 +193,7 @@ public class NearbyPlaces extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:0377778888"));
+                callIntent.setData(Uri.parse("tel:"+phone));
 
 
                 if (ContextCompat.checkSelfPermission(NearbyPlaces.this, android.Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){

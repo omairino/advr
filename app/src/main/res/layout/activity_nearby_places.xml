@@ -9,6 +9,7 @@
     android:id="@+id/nearbyLayout"
     android:elevation="50dp"
     android:layout_margin="15dp"
+    android:screenOrientation="portrait"
    >
 
     <TextView

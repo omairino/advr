@@ -88,10 +88,28 @@ get();
                 adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
-                        databaseReference.child(firebaseUser.getUid()).child("description").child(String.valueOf(positionToRemove)).setValue("").addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child(firebaseUser.getUid()).child("description").child(String.valueOf(positionToRemove)).setValue(l2.getItemAtPosition(l2.getCount()-1)).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
+
+
+                                    databaseReference.child(firebaseUser.getUid()).child("description").child(String.valueOf(l2.getCount()-1)).setValue("").addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+
+                                                Toast.makeText(ProfileActivity.this, "Saved Information Successfully!", Toast.LENGTH_LONG).show();
+                                            } else {
+                                                Toast.makeText(ProfileActivity.this, "Information Not Saved!!!!", Toast.LENGTH_LONG).show();
+                                            }
+                                            //  updates.setText("");
+                                        }
+
+                                    });
+
+
+
                                     Toast.makeText(ProfileActivity.this, "Saved Information Successfully!", Toast.LENGTH_LONG).show();
                                 } else {
                                     Toast.makeText(ProfileActivity.this, "Information Not Saved!!!!", Toast.LENGTH_LONG).show();
@@ -126,9 +144,9 @@ get();
                 arrayList.clear();
 
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                    if(!dsp.getValue().equals("")){
+                   if(!dsp.getValue().equals("")){
                     arrayList.add(String.valueOf(dsp.getValue()));}
-                }
+              }
 
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                    if(dsp.getValue().equals("")){
@@ -188,10 +206,11 @@ get();
                     } else {
                         Toast.makeText(ProfileActivity.this, "Information Not Saved!!!!", Toast.LENGTH_LONG).show();
                     }
-                    updates.setText("");
+
                 }
 
             });
+            updates.setText("");
     }
 
 }

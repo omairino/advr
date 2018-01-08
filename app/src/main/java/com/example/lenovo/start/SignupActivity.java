@@ -66,6 +66,7 @@ public class SignupActivity extends AppCompatActivity {
             Toast.makeText(SignupActivity.this,"Please enter password",Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }else {
+            //firebaseUser.na
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -100,10 +101,10 @@ public class SignupActivity extends AppCompatActivity {
         String lng = getIntent().getStringExtra("lng");
 
         FirebaseUser user=firebaseAuth.getCurrentUser();
-      //  String[] xxx={" "};
-       // List nameList = new ArrayList<String>(Arrays.asList(xxx));
+        String[] xxx={""};
+       List nameList = new ArrayList<String>(Arrays.asList(xxx));
 
-        userInfo userInfo=new userInfo(name,address,property,number,lat,lng,null);
+        userInfo userInfo=new userInfo(name,address,property,number,lat,lng,nameList);
         if((TextUtils.isEmpty(name)||TextUtils.isEmpty(address)||TextUtils.isEmpty(property)||TextUtils.isEmpty(number))){
             Toast.makeText(SignupActivity.this,"Please Fill Information!",Toast.LENGTH_LONG).show();
         }
