@@ -6,36 +6,55 @@
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.start.ProfileActivity"
     android:orientation="vertical"
+    android:id="@+id/lin1"
     android:padding="16dp">
-<TextView
-    android:id="@+id/tv"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="text"
-    android:textSize="30dp"/>
 
-    <EditText
-        android:id="@+id/updatesTxt"
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:width="60dp"
-        android:height="300dp"
-        android:scrollbars="vertical"
-        android:inputType="textMultiLine" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update"
-        android:layout_gravity="center"
-        android:onClick="updateInfo"
-        android:id="@+id/saveBtn"/>
+        android:orientation="horizontal"
+       >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:layout_gravity="center"
-        android:onClick="logoutUser"
-        android:id="@+id/logoutBtn"/>
+        <EditText
+            android:id="@+id/updatesTxt"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+
+
+            android:scrollbars="vertical" />
+
+        <Button
+            android:id="@+id/addtolistBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="addtoList"
+            android:text="Add" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/l2"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
+
+
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/ic_action_logout"
+            android:onClick="logoutUser"
+            android:text="Logout" />
+
 
 </LinearLayout>

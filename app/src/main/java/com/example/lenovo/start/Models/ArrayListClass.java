@@ -32,7 +32,7 @@ public class ArrayListClass extends ArrayAdapter<userInfo>{
         TextView propertyTxt=(TextView)listViewItem.findViewById(R.id.property);
         TextView addTxt=(TextView)listViewItem.findViewById(R.id.address);
         TextView numTxt=(TextView)listViewItem.findViewById(R.id.number);
-        TextView descTxt=(TextView)listViewItem.findViewById(R.id.desc);
+        //TextView descTxt=(TextView)listViewItem.findViewById(R.id.desc);
 
         userInfo user=list.get(position);
 
@@ -41,7 +41,7 @@ public class ArrayListClass extends ArrayAdapter<userInfo>{
         nameTxt.setText(user.getUsername());
         addTxt.setText(user.getAddress());
         numTxt.setText(user.getNumber());
-        descTxt.setText(user.getdescription());
+       // descTxt.setText(user.getdescription());
 
         return listViewItem;
 

@@ -1,5 +1,7 @@
 package com.example.lenovo.start.Models;
 
+import java.util.List;
+
 /**
  * Created by Lenovo on 02/01/2018.
  */
@@ -10,9 +12,9 @@ public    class userInfo {
     public String property;
     public String number;
     public String lat,lng;
-    public String description;
+    public List<String> description;
 
-    public userInfo(String username, String address, String property, String number, String lat, String lng ,String description) {
+    public userInfo(String username, String address, String property, String number, String lat, String lng ,List<String> description) {
         this.username = username;
         this.address = address;
         this.property = property;
@@ -73,11 +75,11 @@ public    class userInfo {
         this.lng = lng;
     }
 
-    public String getdescription() {
+    public List<String> getdescription() {
         return description;
     }
 
-    public void setdescription(String description) {
+    public void setdescription(List<String> description) {
         this.description = description;
     }
 }

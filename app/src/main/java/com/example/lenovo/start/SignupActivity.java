@@ -1,6 +1,7 @@
 package com.example.lenovo.start;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class SignupActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
@@ -95,8 +100,11 @@ public class SignupActivity extends AppCompatActivity {
         String lng = getIntent().getStringExtra("lng");
 
         FirebaseUser user=firebaseAuth.getCurrentUser();
-        userInfo userInfo=new userInfo(name,address,property,number,lat,lng," ");
-        if(TextUtils.isEmpty(name)&&TextUtils.isEmpty(address)&&TextUtils.isEmpty(property)&&TextUtils.isEmpty(number)){
+      //  String[] xxx={" "};
+       // List nameList = new ArrayList<String>(Arrays.asList(xxx));
+
+        userInfo userInfo=new userInfo(name,address,property,number,lat,lng,null);
+        if((TextUtils.isEmpty(name)||TextUtils.isEmpty(address)||TextUtils.isEmpty(property)||TextUtils.isEmpty(number))){
             Toast.makeText(SignupActivity.this,"Please Fill Information!",Toast.LENGTH_LONG).show();
         }
         else {
@@ -105,6 +113,7 @@ public class SignupActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(SignupActivity.this, "Saved Information Successfully!", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(getApplicationContext(),start.class));
                     } else {
                         Toast.makeText(SignupActivity.this, "Information Not Saved!!!!", Toast.LENGTH_LONG).show();
                     }

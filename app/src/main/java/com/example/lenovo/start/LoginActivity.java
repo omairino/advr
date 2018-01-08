@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     } else {
                         Toast.makeText(LoginActivity.this, "Login unsuccesful!", Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
                     }
                 }
             });
@@ -61,6 +62,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void gotoSignup(View view) {
-        startActivity(new Intent(getApplicationContext(),SignupActivity.class));
+
+
+      String  lat = getIntent().getStringExtra("lat");
+      String  lng = getIntent().getStringExtra("lng");
+
+
+        Intent  signupIntent2 = new Intent(this,SignupActivity.class);
+
+        signupIntent2.putExtra("lat",lat);
+        signupIntent2.putExtra("lng", lng);
+        startActivity(signupIntent2);
+
     }
 }

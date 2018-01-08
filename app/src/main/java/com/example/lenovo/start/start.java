@@ -3,6 +3,7 @@ package com.example.lenovo.start;
 import android.*;
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -11,6 +12,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +35,7 @@ public class start extends AppCompatActivity implements LocationListener{
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     RatingBar ratingBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +45,13 @@ public class start extends AppCompatActivity implements LocationListener{
         searchBtn=(Button)findViewById(R.id.searchBtn);
 
 
-        LatLng jenin=new LatLng(32.464670, 35.293844);
-        LatLng omarioptics=new LatLng(32.455527, 35.296018);
-
       //  ((TextView)findViewById(R.id.textView2)).setText(Double.toString(CalculationByDistance(jenin,omarioptics))+"");
         if(cheakInt()){
           //  Toast.makeText(start.this,"No Internet",Toast.LENGTH_LONG);
 
-
     firebaseAuth=FirebaseAuth.getInstance();
     firebaseUser=firebaseAuth.getCurrentUser();
-    if(firebaseUser!=null){
-        finish();
-        startActivity(new Intent(this,ProfileActivity.class));
-    }
+
         }else {Toast.makeText(start.this,"No Internet",Toast.LENGTH_LONG).show();}
 
 
@@ -88,8 +84,8 @@ public class start extends AppCompatActivity implements LocationListener{
         try{
         if(cheakInt()) {
             Toast.makeText(start.this, "No Internet", Toast.LENGTH_LONG);
+            Intent  signupIntent = new Intent(this, SignupActivity.class);
 
-            Intent signupIntent = new Intent(this, SignupActivity.class);
             signupIntent.putExtra("lat", Double.toString(lat));
             signupIntent.putExtra("lng", Double.toString(lng));
             startActivity(signupIntent);
@@ -104,22 +100,32 @@ public class start extends AppCompatActivity implements LocationListener{
 
     public void loginBtnClicked(View view) {
 
+
+        try{
             if (cheakInt()) {
                 firebaseAuth = FirebaseAuth.getInstance();
-                if (firebaseAuth.getCurrentUser() != null) {
-                    finish();
-                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                }
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+                Intent  signupIntent2 = new Intent(this, LoginActivity.class);
+
+                signupIntent2.putExtra("lat", Double.toString(lat));
+                signupIntent2.putExtra("lng", Double.toString(lng));
+                startActivity(signupIntent2);
+
+
             } else {
                 Toast.makeText(start.this, "No Wifi", Toast.LENGTH_LONG).show();
             }
+        }catch (Exception e){
+            Toast.makeText(start.this, "Get Coordinates", Toast.LENGTH_LONG).show();
+        }
 
 
         }
 
     @Override
     public void onLocationChanged(Location location) {
+
+       // getResources().se
         lat = location.getLatitude();
         lng = location.getLongitude();
     }
@@ -189,4 +195,6 @@ public class start extends AppCompatActivity implements LocationListener{
             return connected;
         }
     }
+
+
 }
