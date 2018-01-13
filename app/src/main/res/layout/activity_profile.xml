@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+
         android:textSize="30dp"
         android:textStyle="bold" />
 
@@ -26,35 +27,45 @@
         <EditText
             android:id="@+id/updatesTxt"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="44dp"
 
-
-            android:scrollbars="vertical" />
+            android:background="@drawable/text_rounded"
+            android:scrollbars="vertical"
+            android:shadowColor="@color/colorPrimary"
+            android:textColorLink="@color/colorPrimary" />
 
         <Button
             android:id="@+id/addtolistBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/t_button"
+            android:backgroundTint="@color/colorPrimary"
             android:onClick="addtoList"
-            android:text="Add" />
+            android:text="Add"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <ListView
         android:id="@+id/l2"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="300dp"
+        android:cacheColorHint="@color/colorPrimary"
+        android:scrollbarSize="8dp"
+        android:scrollbarThumbVertical="@drawable/srull" />
 
 
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/t_button"
 
-        <Button
-            android:id="@+id/logoutBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:drawableBottom="@drawable/ic_action_logout"
-            android:onClick="logoutUser"
-            android:text="Logout" />
+        android:drawableBottom="@drawable/back"
+        android:onClick="logoutUser"
+        android:text="Logout"
+        android:textColor="@android:color/white" />
 
 
 </LinearLayout>

@@ -12,24 +12,18 @@
     android:screenOrientation="portrait"
    >
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        />
-
     <ListView
-
         android:id="@+id/listview1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="#b5b5b5"
-        android:dividerHeight="1dp"
-android:listSelector="@color/colorAccent"
-        >
+        android:scrollbarSize="8dp"
+        android:background="@drawable/text_rounded"
+        android:scrollbarThumbVertical="@drawable/srull">
 
     </ListView>
 
-
+    <ListView
+        android:id="@+id/l5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

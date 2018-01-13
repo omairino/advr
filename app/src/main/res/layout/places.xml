@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="30dp"
+        android:background="@drawable/text_rounded"
         android:textStyle="bold"
 
         />
@@ -19,29 +20,26 @@
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+
         android:text="TextView"
-
-        android:textSize="20dp"
-        />
+        android:textSize="20dp" />
 
 
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
 
-        <TextView
-            android:id="@+id/address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="TextView" />
+        android:text="TextView" />
 
 
     <TextView
         android:id="@+id/number"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
 
         android:text="TextView" />
-
 
 
 </LinearLayout>

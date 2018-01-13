@@ -58,7 +58,7 @@ public class NearbyPlaces extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listview1);
 
-        tv = (TextView) findViewById(R.id.textView);
+      //  tv = (TextView) findViewById(R.id.textView);
         items = new ArrayAdapter<String>(NearbyPlaces.this, android.R.layout.simple_list_item_activated_1, arrayList1);
 
 
@@ -71,7 +71,7 @@ public class NearbyPlaces extends AppCompatActivity {
         lat = getIntent().getStringExtra("lat");
         lng = getIntent().getStringExtra("lng");
         dis =getIntent().getStringExtra("distance");
-        tv.setText(lat + " " + lng);
+       // tv.setText(lat + " " + lng);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

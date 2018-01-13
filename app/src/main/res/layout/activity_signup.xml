@@ -12,41 +12,52 @@
         android:id="@+id/emailTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_action_name"
-        android:drawablePadding="12dp"
+        android:drawableLeft="@drawable/mann"
+        android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:textColorHint="#5e0231"
+
+
+        android:textColor="@color/colorPrimaryDark" />
 
     <EditText
         android:id="@+id/passwordTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_action_pass"
+        android:drawableLeft="@drawable/lockkk"
         android:drawablePadding="12dp"
+
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:textColorHint="#5e0231"
+        android:inputType="textPassword"
+        android:textColor="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/createUserBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/t_button"
         android:onClick="createUserBtnClicked"
-        android:text="Create User" />
+        android:text="Create User"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
     <EditText
         android:id="@+id/nameTxt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:layout_height="40dp"
+        android:background="@drawable/text_rounded"
         android:hint="Name"
-        android:visibility="invisible"/>
+        android:inputType="textPersonName"
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/addressTxt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/text_rounded"
         android:hint="Address"
         android:inputType="textPersonName"
         android:visibility="invisible"
@@ -55,15 +66,17 @@
     <EditText
         android:id="@+id/propertyTxt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:layout_height="40dp"
+        android:background="@drawable/text_rounded"
+        android:hint="Property Name"
         android:inputType="textPersonName"
-        android:hint="Property Name" />
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/numTxt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/text_rounded"
         android:hint="Number"
         android:inputType="number"
         android:visibility="invisible"
@@ -79,40 +92,45 @@
         <TextView
             android:id="@+id/coordsTxt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:text="Coordinates"
-            android:textSize="16dp"/>
+            android:textSize="16dp" />
 
         <EditText
             android:id="@+id/latTxt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
+            android:background="@drawable/text_rounded"
             android:clickable="false"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="textPersonName"
-            android:hint="Lat" />
+            android:hint="Lat"
+            android:inputType="textPersonName" />
+
         <EditText
             android:id="@+id/lngTxt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
+            android:background="@drawable/text_rounded"
             android:clickable="false"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="textPersonName"
-            android:hint="Lng"  />
+            android:hint="Lng"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <Button
         android:id="@+id/sendInfoBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/t_button"
         android:onClick="addInfo"
         android:text="Save Information"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:visibility="invisible" />
 </LinearLayout>
