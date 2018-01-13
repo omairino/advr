@@ -26,7 +26,7 @@ public class ArrayListClass extends ArrayAdapter<userInfo>{
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater=context.getLayoutInflater();
-        View listViewItem=layoutInflater.inflate(R.layout.places,null,true);
+        View listViewItem=layoutInflater.inflate(R.layout.arrow,null,true);
 
         TextView nameTxt=(TextView)listViewItem.findViewById(R.id.name);
         TextView propertyTxt=(TextView)listViewItem.findViewById(R.id.property);

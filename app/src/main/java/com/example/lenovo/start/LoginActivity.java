@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
 
                     } else {
-                        Toast.makeText(LoginActivity.this, "Login unsuccesful!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Login unsuccessful!", Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
                     }
                 }

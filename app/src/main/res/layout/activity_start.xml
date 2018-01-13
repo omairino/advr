@@ -10,17 +10,35 @@
     android:padding="16dp"
    >
 
-    <TextView
-        android:id="@+id/textView2"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="LoCAT"
-        android:textAlignment="center"
-        android:textColor="#5e0231"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:typeface="serif"/>
+        android:orientation="horizontal"
+        android:gravity="center">
 
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+         android:textSize="20dp"
+            android:textAlignment="center"
+            android:text="Set Distance" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:inputType="numberDecimal"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Distance"
+             />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/searchBtn"
@@ -28,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/round_btn"
         android:onClick="searchBtnClicked"
         android:text="Search!"
@@ -68,6 +86,7 @@
             android:textColor="#f5f5f5"
             android:background="#5e0231"
             android:onClick="loginBtnClicked" />
+
     </LinearLayout>
 
 </LinearLayout>

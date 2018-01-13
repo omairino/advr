@@ -105,6 +105,7 @@ public class SignupActivity extends AppCompatActivity {
        List nameList = new ArrayList<String>(Arrays.asList(xxx));
 
         userInfo userInfo=new userInfo(name,address,property,number,lat,lng,nameList);
+
         if((TextUtils.isEmpty(name)||TextUtils.isEmpty(address)||TextUtils.isEmpty(property)||TextUtils.isEmpty(number))){
             Toast.makeText(SignupActivity.this,"Please Fill Information!",Toast.LENGTH_LONG).show();
         }

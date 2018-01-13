@@ -43,7 +43,7 @@ public class NearbyPlaces extends AppCompatActivity {
     ListView listView1;
     ProgressDialog progressDialog;
     TextView tv;
-    String lat, lng;
+    String lat, lng,dis;
     String property, secondLat, secondLng, phone;
     String desc = "";
     private ArrayList<userInfo> arrayList = new ArrayList<>();
@@ -59,7 +59,7 @@ public class NearbyPlaces extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listview1);
 
         tv = (TextView) findViewById(R.id.textView);
-        items = new ArrayAdapter<String>(NearbyPlaces.this, android.R.layout.simple_list_item_1, arrayList1);
+        items = new ArrayAdapter<String>(NearbyPlaces.this, android.R.layout.simple_list_item_activated_1, arrayList1);
 
 
         progressDialog = new ProgressDialog(this);
@@ -70,6 +70,7 @@ public class NearbyPlaces extends AppCompatActivity {
 
         lat = getIntent().getStringExtra("lat");
         lng = getIntent().getStringExtra("lng");
+        dis =getIntent().getStringExtra("distance");
         tv.setText(lat + " " + lng);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -123,7 +124,7 @@ public class NearbyPlaces extends AppCompatActivity {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         userInfo userInfo = ds.getValue(com.example.lenovo.start.Models.userInfo.class);
                             if(!(userInfo.getNumber()==null&&userInfo.getUsername()==null&&userInfo.getAddress()==null&&userInfo.getProperty()==null))
-                                if (CalculationByDistance(coords[0], new LatLng(Double.parseDouble(userInfo.getLat()), Double.parseDouble(userInfo.getLng()))) <= 100.0) {
+                                if (CalculationByDistance(coords[0], new LatLng(Double.parseDouble(userInfo.getLat()), Double.parseDouble(userInfo.getLng()))) <= Double.parseDouble(dis)) {
                             arrayList.add(userInfo);
 
                         }
